@@ -8,6 +8,12 @@ function updateTime() {
     $('#currentDay').html(date);
 }
 
+// save event in local storage 
+var events = []
+var saveEvent = function() {
+    localStorage.setItem("events", JSON.stringify(events))
+}
+
 // TIMEBLOCK CODE
 //update bgc of task-container
 var bgColorTasks = function() {
@@ -30,3 +36,28 @@ $(function() {
     bgColorTasks()
 });
 
+//write a task
+
+$(".task-container").on("click","p", function() {
+    var text = $(this).text().trim();
+    var textArea = $("<textarea>").val(text).addClass("text-area-task")
+    $(this).replaceWith(textArea)
+    textArea.trigger("focus")
+})
+
+//btn save click
+
+$(".saveBtn").on("click","span",function() {
+    var text = $(".text-area-task").val()
+    var hour = $(this).closest(".row").attr("id")
+    events.push({
+        hour:hour,
+        event:text
+    })
+    saveEvent()
+
+    var textP = $("<p>").addClass("task").text(text)
+    $(".text-area-task").replaceWith(textP)
+
+    
+})

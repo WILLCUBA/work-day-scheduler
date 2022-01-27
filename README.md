@@ -23,8 +23,7 @@ This is a simple work day calendar application that allows a user to save events
 * CSS
 * Bootstrap
 * jQuery
-* Moment.js
-  
+
 ## Screenshot
 ![image](https://user-images.githubusercontent.com/51419545/151289593-9962b5f7-1949-4323-875b-b4fa10aa930d.png)
 

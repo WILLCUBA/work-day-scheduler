@@ -26,4 +26,5 @@ This is a simple work day calendar application that allows a user to save events
 * Moment.js
   
 ## Screenshot
-![image](https://user-images.githubusercontent.com/51419545/151289404-81182152-adea-4c34-9eab-4b6f3d5ac347.png)
+![image](https://user-images.githubusercontent.com/51419545/151289516-cd02ce69-d559-4a8e-8ab2-84dcb202804d.png)
+

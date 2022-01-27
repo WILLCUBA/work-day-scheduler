@@ -1,19 +1,20 @@
 //date
+var eventTextEl = $(".task") 
 var date = new Date;
 var hours = parseInt(date.getHours())
 //update the date and the text content
+
 function updateTime() {
     var date = new Date;
     date = date.toString().slice(0,24)
     $('#currentDay').html(date);
 }
-
-// save event in local storage 
-var events = []
-var saveEvent = function() {
-    localStorage.setItem("events", JSON.stringify(events))
-}
-
+// $ used to call the function when the document object is fully loaded
+$(function() {
+    updateTime();
+    setInterval(updateTime, 1000);
+    bgColorTasks()
+});
 // TIMEBLOCK CODE
 //update bgc of task-container
 var bgColorTasks = function() {
@@ -27,37 +28,16 @@ var bgColorTasks = function() {
         }
     })
 }
-
-// call update and bgctask every second
-// $ used to call the function when the document object is fully loaded
-$(function() {
-    updateTime();
-    setInterval(updateTime, 1000);
-    bgColorTasks()
-});
-
-//write a task
-
-$(".task-container").on("click","p", function() {
-    var text = $(this).text().trim();
-    var textArea = $("<textarea>").val(text).addClass("text-area-task")
-    $(this).replaceWith(textArea)
-    textArea.trigger("focus")
+//save textarea values when btn save is clicked
+$(".saveBtn").on("click",function(){
+    var hour = $(this).parent().attr("id");
+    localStorage.setItem(hour,$("textarea[id='hour-" + hour).val())
 })
 
-//btn save click
-
-$(".saveBtn").on("click","span",function() {
-    var text = $(".text-area-task").val()
-    var hour = $(this).closest(".row").attr("id")
-    events.push({
-        hour:hour,
-        event:text
-    })
-    saveEvent()
-
-    var textP = $("<p>").addClass("task").text(text)
-    $(".text-area-task").replaceWith(textP)
-
-    
+//textarea values = lstorage correspondent value
+eventTextEl.each(function(){
+    var parentId = $(this).parent().parent().attr("id")
+    if(localStorage.getItem(parentId)) {
+        $("textarea[id='hour-" + parentId).val(localStorage.getItem(parentId))
+    }
 })
